@@ -7,7 +7,7 @@
   :license "BSD 2-clause"
   :depends-on (#:lazy-susan
                #:dishes
-               #:uiop/package
+               #:uiop
                #:alexandria
                #:3bmd
                )
