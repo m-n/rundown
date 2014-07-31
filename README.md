@@ -8,8 +8,8 @@ displayed in a way which assumes:
 
     1. The file is written in short sections.
     2. Code sections are preceded by a clear call to action.
-    3. A heading starts a sections.
-    4. Code blocks ends a section. 
+    3. Headings start a sections.
+    4. Code blocks end a section. 
 
 Like other interactive tutorials, this doles out bite-size chunks over
 an interactive prompt, but unlike most of them there is no attempt to
