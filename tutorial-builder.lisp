@@ -15,7 +15,7 @@ The format is simple:
     #\\# #\\Space    -- Treats the line as a shell command, e.g. `# ls`
     <anything else>-- Runs as a lisp command
 
-So, press enter to coninue!" name))
+So, press enter to coninue!~%" name))
 
 (defun parse-markdown (pathname)
   (3bmd-grammar:parse-doc
@@ -48,34 +48,40 @@ So, press enter to coninue!" name))
         finally (return lines)))
 
 (defun print-next-tutorial-group (v index stream)
-  (flet ((type (i)
+  (flet ((type (i) 
            (car (aref v i)))
          (output-line-count (i)
-           (let ((string
-                  (with-output-to-string (s)
-                    (with-protected-markdown-context
-                      (3bmd::print-md-element (aref v i) s)))))
-             (lines string))))
+           (if (< i (length v))
+               (let ((string
+                      (with-output-to-string (s)
+                        (with-protected-markdown-context
+                          (3bmd::print-md-element (aref v i) s)))))
+                 (lines string))
+               0)))
     (labels ((start (n)
-               (case (type n)
-                 (:heading
-                  #'start)
-                 ((:verbatim . #.(when (find-package "3B-MD-CODE-BLOCKS")
-                                   `(,(find-symbol
-                                       "CODE-BLOCK" "3B-MD-CODE-BLOCKS"))))
-                  #'verbatim) 
-                 (t
+               (if (< n (length v))
+                   (case (type n)
+                     (:heading
+                      #'start)
+                     ((:verbatim . #.(when (find-package "3BMD-CODE-BLOCKS")
+                                       `(,(find-symbol
+                                           "CODE-BLOCK" "3BMD-CODE-BLOCKS"))))
+                      #'verbatim) 
+                     (t
                                         ;(:paragraph :counted-list :bullet-list)
-                  #'paragraph)))
+                      #'paragraph))
+                   #'end))
              (verbatim (n) (declare (ignore n)) #'end)
              (paragraph (n)
-               (case (type n)
-                 (:heading #'end)
-                 ((:verbatim . #.(when (find-package "3B-MD-CODE-BLOCKS")
-                                   `(,(find-symbol
-                                       "CODE-BLOCK" "3B-MD-CODE-BLOCKS"))))
-                  #'verbatim)
-                 (t #'paragraph)))
+               (if (< n (length v))
+                   (case (type n)
+                     (:heading #'end)
+                     ((:verbatim . #.(when (find-package "3BMD-CODE-BLOCKS")
+                                       `(,(find-symbol
+                                           "CODE-BLOCK" "3BMD-CODE-BLOCKS"))))
+                      #'verbatim)
+                     (t #'paragraph))
+                   #'end))
              (end (n)
                (do* ((j index (+ 1 j))
                      (lc (output-line-count j)
@@ -86,11 +92,18 @@ So, press enter to coninue!" name))
                      (return-from print-next-tutorial-group
                        (1- n)))
                  (3bmd::print-md-element (aref v j) stream))))
-      (loop for idx from index
-            for state = (start idx) then (funcall state idx)))))
+      (if (< index (length v))
+          (loop for idx from index
+                for state = (start idx) then (funcall state idx))
+          (progn (format stream "Thank you, that is the end of the tutorial.~%")
+                 index)))))
 
 (defun print-prompt ()
   (format t "~A> " (package-name  *package*)))
+
+(defun tutorial-read-from-string (str &optional eof-errorp eof-value)
+  (let ((*readtable* (ls:package-rt 'tutorial-builder)))
+    (read-from-string str eof-errorp eof-value)))
 
 (defun interactive-tutorial (l)
   (with-shard-markdown-context 
@@ -111,7 +124,7 @@ So, press enter to coninue!" name))
                        (subseq string 1)
                        string))))
         (format t "~%") (print-prompt)
-        (let ((line (read-from-string (read-line) () :next)))
+        (let ((line (tutorial-read-from-string (read-line) () :next)))
           (case line
             ((:next :n next n)
              (setq print t))
