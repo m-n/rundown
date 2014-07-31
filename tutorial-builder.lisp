@@ -12,7 +12,7 @@ The format is simple:
     :up/:u/up/u    -- Takes you to the previous section
     :quit/:q/quit/q-- Exits the tutorial.
     <a blank line> -- Advances you to the next section
-    #\\# #\\Space    -- Treats the line as a shell command, e.g. `# ls`
+    #\\# #\\Space  -- Treats the line as a shell command run from dir of *d-p-d*
     <anything else>-- Runs as a lisp command
 
 So, press enter to coninue!~%" name))
