@@ -1,8 +1,6 @@
 Open
 ====
 
-2. Error handling should return control to the read eval tutor loop.
-
 4. Multiline input is not working.
 
 Closed
@@ -13,4 +11,7 @@ Closed
 -- we now use something similar to string-equal
 
 3. The welcome should respond to the commands it describes.
+-- fixed
+
+2. Error handling should return control to the read eval tutor loop.
 -- fixed
