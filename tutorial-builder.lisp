@@ -7,13 +7,18 @@
 (defun welcome (name)
   (format t "Welcome to the ~A tutorial.
 
-The format is simple:
+The controls are simple:
 
-    :up/:u/up/u    -- Takes you to the previous section
-    :quit/:q/quit/q-- Exits the tutorial.
+    up/u           -- Takes you to the previous section
+    quit/q         -- Exits the tutorial.
     <a blank line> -- Advances you to the next section
-    #\\# #\\Space  -- Treats the line as a shell command run from dir of *d-p-d*
+    repeat/r       -- Repeat this text
+    #\\# #\\Space    -- Treats the line as a shell command
     <anything else>-- Runs as a lisp command
+
+The shell syntax runs its command from the directory of the *d-p-d*. To
+change directories for the shell syntax, instead of `# cd new/path`
+do `(setf *default-pathname-defaults* #P\"new/path\")`.
 
 So, press enter to coninue!~%" name))
 
@@ -123,14 +128,17 @@ So, press enter to coninue!~%" name))
                        string))))
         (format t "~%") (print-prompt)
         (let ((line (tutorial-read-from-string (read-line) () :next)))
-          (case line
-            ((:next :n next n)
+          (case* (line :test #'symbol-name-equal)
+            ((next n)
              (setq print t))
-            ((:up :u up u)
+            ((up u)
              (pop is) (pop is)
              (setq print t))
-            ((:quit  :q quit q)
+            ((quit q)
              (return-from interactive-tutorial))
+            ((repeat r)
+             (pop is)
+             (setq print t))
             (t (prin1 (eval line)) (terpri) (setq print ()))))))))
 
 (defun run (file &key name)

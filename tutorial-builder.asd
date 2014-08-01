@@ -12,5 +12,6 @@
                #:3bmd
                )
   :components ((:file "package")
+               (:file "utils.lisp")
                (:file "tutorial-builder")))
 
