@@ -100,7 +100,7 @@ So, press enter to coninue!~%" name))
       (if (< index (length v))
           (loop for idx from index
                 for state = (start idx) then (funcall state idx))
-          (progn (format stream "Thank you, that is the end of the tutorial.~%")
+          (progn (format stream "Thank you, that concludes the tutorial.~%")
                  index)))))
 
 (defun print-prompt ()
@@ -142,6 +142,7 @@ So, press enter to coninue!~%" name))
             (t (prin1 (eval line)) (terpri) (setq print ()))))))))
 
 (defun run (file &key name)
+  "Start the tutorial using the given pathname as the source file."
   (tagbody welcome
      (print-welcome (if name name (pathname-name (pathname file))))
      prompt
