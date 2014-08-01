@@ -3,7 +3,7 @@ Open
 
 2. Error handling should return control to the read eval tutor loop.
 
-3. The welcome should respond to the commands it describes.
+4. Multiline input is not working
 
 Closed
 ======
@@ -11,3 +11,6 @@ Closed
 1. Control names should be compared by string-equal not eql. The current
    behavior will be a problem if the user changes packages.
 -- we now use something similar to string-equal
+
+3. The welcome should respond to the commands it describes.
+-- fixed

@@ -4,7 +4,7 @@
 
 (ls:in-package/rt #:tutorial-builder)
 
-(defun welcome (name)
+(defun print-welcome (name)
   (format t "Welcome to the ~A tutorial.
 
 The controls are simple:
@@ -142,6 +142,20 @@ So, press enter to coninue!~%" name))
             (t (prin1 (eval line)) (terpri) (setq print ()))))))))
 
 (defun run (file &key name)
-  (welcome (if name name (pathname-name (pathname file))))
-  (read-line)
+  (tagbody welcome
+     (print-welcome (if name name (pathname-name (pathname file))))
+     prompt
+     (format t "~%") (print-prompt)
+     (let ((line (tutorial-read-from-string (read-line) () :next)))
+       (case* (line :test #'symbol-name-equal)
+         ((up u repeat r)
+          (go welcome))
+         ((next n)
+          ())
+         ((quit q)
+          (return-from run))
+         (t
+          (prin1 (eval line))
+          (terpri)
+          (go prompt)))))
   (interactive-tutorial (parse-markdown file)))
