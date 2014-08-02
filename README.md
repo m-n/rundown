@@ -1,7 +1,6 @@
 # Rundown
 
-A small library for running a markdown file as a repl based
-interactive tutorial.
+Rundown runs markdown files as lisp repl based interactive tutorials.
 
 We include a short example tutorial showing the use of
 `git bisect run` with a lisp project.
