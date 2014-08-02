@@ -31,8 +31,8 @@ input such as "`(1 .,1)".
 ## Getting lazy-susan
 
 We assume that you have SBCL installed, and that you have Quicklisp
-installed and that your .sbclrc loads it. We'll clone lazy-susan into
-~/quicklisp/local-projects:
+installed and that your .sbclrc loads it. Clone lazy-susan into
+~/quicklisp/local-projects, if you haven't already done so:
 
     cd ~/quicklisp/local-projects
     git clone https://github.com/m-n/lazy-susan
@@ -63,9 +63,8 @@ finally do the automatic bisect:
     git bisect start d169e99 697d95   # d169e99 could typically be a branch name
     git bisect run ./bisect.lisp
 
-That should have run for several seconds, and then tell you what that
-the first bad commit was 4392d6, in which I introduced my own list
-reader.
+That should have run for several seconds, and then told you that the
+first bad commit was 4392d6, in which I introduced my own list reader.
 
 Now you can check the log of the bisect, and then finish the bisect.
 
