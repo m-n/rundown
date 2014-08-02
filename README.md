@@ -22,14 +22,20 @@ to the next step. I find that such guards typically cause harm.
 `run` is the only exported function: given a path to a markdown file
 it starts the tutorial.
 
+## Installation
+
+Assuming you have quicklisp installed, clone tutorial-builder and its
+two non-quicklispable dependencies into local-projects.
+
+    cd ~/quicklisp/local-projects
+    git clone git@github.com/m-n/lazy-susan.git       # non-quicklisp dependency
+    git clone git@github.com/m-n/dishes.git           # non-quicklisp dependency
+    git clone git@github.com/m-n/tutorial-builder.git
+
+
 ## Example
 
-To run the example tutorial (assuming you have quicklisp installed in
-`~/quicklisp`):
-
-    # at the shell prompt
-    cd ~/quicklisp/local-projects
-    git clone git@github.com/m-n/tutorial-builder.git
+To run the example tutorial:
 
     ;; at the lisp prompt
     (ql:quickload 'tutorial-builder)
