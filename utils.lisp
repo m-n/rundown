@@ -16,8 +16,8 @@
                    `(t ,@body)
                    `((member ,cobj ',(alexandria:ensure-list cases) :test ,ctest)
                      ,@body)))))
-      `(let ((,gtest ,test)
-             (,gobj ,obj))
+      `(let ((,gobj ,obj)
+             (,gtest ,test))
          (cond ,@(mapcar (alexandria:rcurry #'generate-cond-clause gtest gobj)
                          clauses))))))
 

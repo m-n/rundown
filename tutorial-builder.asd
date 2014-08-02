@@ -2,7 +2,7 @@
 
 (asdf:defsystem #:tutorial-builder
   :serial t
-  :description "A library for presenting md files as tutorials."
+  :description "A library for presenting .md files as tutorials."
   :author "Matt Niemeir <matt.niemeir@gmail.com>"
   :license "BSD 2-clause"
   :depends-on (#:lazy-susan
