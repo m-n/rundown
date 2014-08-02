@@ -22,6 +22,11 @@ do `(setf *default-pathname-defaults* #P\"new/path\")`.
 
 So, press enter to coninue!~%" name))
 
+;; addresses https://github.com/3b/3bmd/issues/14
+(when (fboundp '3bmd::ensure-block)
+  (setf (symbol-function '3bmd::ensure-paragraph) #'3bmd::ensure-block
+        (symbol-function '3bmd::end-paragraph) #'3bmd::end-block))
+
 (defun parse-markdown (pathname)
   (3bmd-grammar:parse-doc
    (alexandria:read-file-into-string pathname)))
@@ -100,7 +105,7 @@ So, press enter to coninue!~%" name))
       (if (< index (length v))
           (loop for idx from index
                 for state = (start idx) then (funcall state idx))
-          (progn (format stream "Thank you, that concludes the tutorial.~%")
+          (progn (format stream "Thank you. I hope you enjoyed the tutorial.~%")
                  index)))))
 
 (defun print-prompt ()

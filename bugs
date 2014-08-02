@@ -16,3 +16,6 @@ Closed
 
 4. Multiline input is not working.
 -- fixed
+
+5. Document or programmatically get patched 3bmd
+-- Just set the missing function definitions.
