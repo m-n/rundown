@@ -1,7 +1,7 @@
 ;;;; utils.lisp
 
-(in-package #:tutorial-builder)
-(ls:in-package/rt #:tutorial-builder)
+(in-package #:rundown)
+(ls:in-package/rt #:rundown)
 
 (defmacro case* ((obj &key (test #'eql)) &body clauses)
   "Like case but accepts :test parameter."

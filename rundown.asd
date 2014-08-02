@@ -1,8 +1,8 @@
-;;;; tutorial-builder.asd
+;;;; rundown.asd
 
-(asdf:defsystem #:tutorial-builder
+(asdf:defsystem #:rundown
   :serial t
-  :description "A library for presenting .md files as tutorials."
+  :description "A library for running markdown files as tutorials."
   :author "Matt Niemeir <matt.niemeir@gmail.com>"
   :license "BSD 2-clause"
   :depends-on (#:lazy-susan
@@ -13,5 +13,5 @@
                )
   :components ((:file "package")
                (:file "utils")
-               (:file "tutorial-builder")))
+               (:file "rundown")))
 

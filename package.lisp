@@ -1,14 +1,14 @@
 ;;;; package.lisp
 
-(defpackage #:tutorial-builder
+(defpackage #:rundown
   (:use #:cl)
   (:export
    #:run
    ))
 
-(in-package #:tutorial-builder)
+(in-package #:rundown)
 
-(ls:setup-package-rt (tutorial-builder)
+(ls:setup-package-rt (rundown)
   (#\# #\Space) #'dishes:repl-run-program-reader
   (#\# #\;) #'dishes:comment-line-suppress-forms
   :digit-separators '(#\_))

@@ -1,8 +1,8 @@
-;;;; tutorial-builder.lisp
+;;;; rundown.lisp
 
-(in-package #:tutorial-builder)
+(in-package #:rundown)
 
-(ls:in-package/rt #:tutorial-builder)
+(ls:in-package/rt #:rundown)
 
 (defun print-welcome (name)
   (format t "Welcome to the ~A tutorial.
@@ -112,7 +112,7 @@ So, press enter to coninue!~%" name))
   (format t "~A> " (package-name  *package*)))
 
 (defun tutorial-read ()
-  (let ((*readtable* (ls:package-rt 'tutorial-builder)))
+  (let ((*readtable* (ls:package-rt 'rundown)))
     ;; We don't use `read` because it hangs until it creates an
     ;; object, but we want a bare return to advance the tutorial.  We
     ;; don't use read-line because we want multi-line input.

@@ -1,4 +1,4 @@
-# Tutorial Builder
+# Rundown
 
 A small library for running a markdown file as a repl based
 interactive tutorial.
@@ -24,13 +24,13 @@ it starts the tutorial.
 
 ## Installation
 
-Assuming you have quicklisp installed, clone tutorial-builder and its
-two non-quicklispable dependencies into local-projects.
+Assuming you have quicklisp installed, clone rundown and its two
+non-quicklispable dependencies into local-projects.
 
     cd ~/quicklisp/local-projects
     git clone git@github.com/m-n/lazy-susan.git       # non-quicklisp dependency
     git clone git@github.com/m-n/dishes.git           # non-quicklisp dependency
-    git clone git@github.com/m-n/tutorial-builder.git
+    git clone git@github.com/m-n/rundown.git
 
 
 ## Example
@@ -38,8 +38,8 @@ two non-quicklispable dependencies into local-projects.
 To run the example tutorial:
 
     ;; at the lisp prompt
-    (ql:quickload 'tutorial-builder)
-    (tutorial-builder:run #P"~/quicklisp/local-projects/tutorial-builder/git-bisect.md")
+    (ql:quickload 'rundown)
+    (rundown:run #P"~/quicklisp/local-projects/rundown/git-bisect.md")
 
-Feedback is welcome at `https://github.com/m-n/tutorial-builder` or
+Feedback is welcome at `https://github.com/m-n/rundown` or
 `matt.niemeir@gmail.com`.
