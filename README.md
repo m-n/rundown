@@ -23,7 +23,7 @@ it starts the tutorial.
 
 ## Installation
 
-Assuming you have quicklisp installed, clone rundown and its two
+Assuming you have quicklisp installed, clone Rundown and its two
 non-quicklispable dependencies into local-projects.
 
     cd ~/quicklisp/local-projects
