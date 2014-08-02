@@ -1,8 +1,6 @@
 Open
 ====
 
-4. Multiline input is not working.
-
 Closed
 ======
 
@@ -14,4 +12,7 @@ Closed
 -- fixed
 
 2. Error handling should return control to the read eval tutor loop.
+-- fixed
+
+4. Multiline input is not working.
 -- fixed

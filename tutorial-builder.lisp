@@ -106,14 +106,25 @@ So, press enter to coninue!~%" name))
 (defun print-prompt ()
   (format t "~A> " (package-name  *package*)))
 
-(defun tutorial-read-from-string (str &optional eof-errorp eof-value)
+(defun tutorial-read ()
   (let ((*readtable* (ls:package-rt 'tutorial-builder)))
-    (read-from-string str eof-errorp eof-value)))
+    ;; We don't use `read` because it hangs until it creates an
+    ;; object, but we want a bare return to advance the tutorial.  We
+    ;; don't use read-line because we want multi-line input.
+    (read-from-string
+     (with-output-to-string (s)
+       (peek-char)                      ; hang for any input
+       (do ((c (read-char-no-hang)
+               (read-char-no-hang)))
+           ((not c))                    ; grab all the input
+         (write-char c s)))
+     ()
+     :next)))
 
 (defun get-input ()
   (terpri)
   (print-prompt)
-  (handler-case (tutorial-read-from-string (read-line) () :next)
+  (handler-case (tutorial-read)
     (serious-condition (c)
       (format t "Error reading form. ~&~A~%" c)
       (get-input))))
