@@ -1,6 +1,8 @@
 Open
 ====
 
+6. Multiline input works on slime but not bare sbcl repl.
+
 Closed
 ======
 
