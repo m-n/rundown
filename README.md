@@ -27,9 +27,9 @@ Assuming you have quicklisp installed, clone Rundown and its two
 non-quicklispable dependencies into local-projects.
 
     cd ~/quicklisp/local-projects
-    git clone git@github.com/m-n/lazy-susan.git       # non-quicklisp dependency
-    git clone git@github.com/m-n/dishes.git           # non-quicklisp dependency
-    git clone git@github.com/m-n/rundown.git
+    git clone https://github.com/m-n/lazy-susan.git       # non-quicklisp dependency
+    git clone https://github.com/m-n/dishes.git           # non-quicklisp dependency
+    git clone https://github.com/m-n/rundown.git
 
 
 ## Example
