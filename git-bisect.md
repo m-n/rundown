@@ -38,6 +38,8 @@ installed and that your .sbclrc loads it. Clone lazy-susan into
     git clone https://github.com/m-n/lazy-susan
     cd lazy-susan/
 
+## Making a script for bisect
+
 Now that we have lazy-susan, we can create a bisect.lisp script in its
 directory which will return 1 if the current checkout exhibits the
 defect, 0 if it doesn't, and 125 if we can't determine that.
@@ -56,6 +58,8 @@ defect, 0 if it doesn't, and 125 if we can't determine that.
       (sb-ext:quit :unix-status
                    (handler-case (progn (read-from-string "`(1 .,1)") 0)
                      (serious-condition () 1))))
+
+## Running the script
 
 Now `chmod +x bisect.lisp` so that git can execute it, then we can
 finally do the automatic bisect:
